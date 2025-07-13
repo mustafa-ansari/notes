@@ -123,7 +123,7 @@ function AskAIButton({ user }: Props) {
                     {isPending && <p className="animate-pulse text-sm">Thinking...</p>}
                 </div>
 
-                <div className="mt-auto flex flex-row cursor-text rounded-lg border p-4" onClick={handleClickInput}>
+                <div className="mt-auto flex flex-row cursor-text rounded-lg border p-4 gap-2" onClick={handleClickInput}>
                     <Textarea
                         ref={textAreaRef}
                         placeholder="Ask anything about your notes..."
