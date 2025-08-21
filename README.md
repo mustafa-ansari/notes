@@ -1,6 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+A simple note taking app with AI integration for note related queries
 
-## Getting Started
+## To Run
 
 First, generate the prisma client and run migrations:
 
