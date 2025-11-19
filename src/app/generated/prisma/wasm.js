@@ -129,6 +129,7 @@ exports.Prisma.UserScalarFieldEnum = {
 
 exports.Prisma.NoteScalarFieldEnum = {
   id: 'id',
+  title: 'title',
   text: 'text',
   authorId: 'authorId',
   createdAt: 'createdAt',
@@ -143,6 +144,11 @@ exports.Prisma.SortOrder = {
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 
 

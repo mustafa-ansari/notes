@@ -7,6 +7,7 @@ import { debounceTimeout } from "@/lib/constants";
 import useNote from "@/hooks/useNote";
 import { updateNoteAction } from "@/actions/notes";
 import { Input } from "./ui/input";
+import RTEditor from "./RTEditor";
 
 type Props = {
 	noteId: string;
@@ -36,16 +37,30 @@ function NoteText({ noteId, startingNoteText, startingNoteTitle }: Props) {
 		setNoteTitle,
 	]);
 
-	const handleTextUpdate = (e: ChangeEvent<HTMLTextAreaElement>) => {
-		const text = e.target.value;
-		const type = e.target.type;
+	// const handleTextUpdate = (e: ChangeEvent<HTMLTextAreaElement>) => {
+	// 	const text = e.target.value;
+	// 	const type = e.target.type;
+
+	// 	setNoteText(text);
+
+	// 	clearTimeout(textUpdateTimeout);
+	// 	textUpdateTimeout = setTimeout(() => {
+	// 		updateNoteAction(noteId, text, type);
+	// 	}, debounceTimeout);
+	// };
+
+	const handleTextUpdate = (content: string) => {
+		const text = content;
+		const type = "textarea";
 
 		setNoteText(text);
+		console.log("callback content", content);
+		updateNoteAction(noteId, text, type);
 
-		clearTimeout(textUpdateTimeout);
-		textUpdateTimeout = setTimeout(() => {
-			updateNoteAction(noteId, text, type);
-		}, debounceTimeout);
+		// clearTimeout(textUpdateTimeout);
+		// textUpdateTimeout = setTimeout(() => {
+		// 	updateNoteAction(noteId, text, type);
+		// }, debounceTimeout);
 	};
 
 	const handleTitleUpdate = (e: ChangeEvent<HTMLInputElement>) => {
@@ -66,14 +81,17 @@ function NoteText({ noteId, startingNoteText, startingNoteTitle }: Props) {
 				value={noteTitle}
 				onChange={handleTitleUpdate}
 				placeholder="Title..."
-				className="custom-scrollbar placeholder:text-muted-foreground mb-2 h-1 max-w-4xl resize-none border p-4 focus-visible:ring-0 focus-visible:ring-offset-0"
+				className="custom-scrollbar placeholder:text-muted-foreground h-1 max-w-4xl resize-none border p-4 focus-visible:ring-0 focus-visible:ring-offset-0"
 			/>
-			<Textarea
+			{/* <Textarea
 				value={noteText}
 				onChange={handleTextUpdate}
 				placeholder="Type here..."
 				className="custom-scrollbar placeholder:text-muted-foreground mb-4 h-full max-w-4xl resize-none border p-4 focus-visible:ring-0 focus-visible:ring-offset-0"
-			></Textarea>
+			></Textarea> */}
+			<div className="prose dark:prose-invert w-full max-w-4xl">
+				<RTEditor content={noteText} onChange={handleTextUpdate} />
+			</div>
 		</>
 	);
 }
